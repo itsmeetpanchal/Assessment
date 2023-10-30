@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Interval Calculator</title>
+    <!-- Include Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Include Tempus Dominus (Bootstrap DateTimePicker) CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Date Interval Calculator</h1>
+
+        <div class="form-group mt-4">
+            <label for="startDate">Start Date:</label>
+            <div class="input-group date" id="startDate" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#startDate" id="startInput">
+                <div class="input-group-append" data-target="#startDate" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="endDate">End Date:</label>
+            <div class="input-group date" id="endDate" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#endDate" id="endInput">
+                <div class="input-group-append" data-target="#endDate" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="calculateInterval">Calculate Interval</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#startDate').datetimepicker({
+                format: 'MM DD, YYYY',
+            });
+
+            $('#endDate').datetimepicker({
+                format: 'MM DD, YYYY',
+            });
+
+            $('#calculateInterval').on('click', function() {
+                var startDate = moment($('#startInput').val(), 'MMMM DD, YYYY');
+                var endDate = moment($('#endInput').val(), 'MMMM DD, YYYY');
+
+                var interval = endDate.diff(startDate, 'days');
+                console.log('Date Interval: ' + interval + ' days');
+            });
+        });
+    </script>
+</body>
+</html>
